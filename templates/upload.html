@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Sections</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .media-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 800px;
+            margin: 20px;
+        }
+
+        .media-section {
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .media-image {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .media-link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 18px;
+            color: #007BFF;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .media-link:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="media-container">
+        <div class="media-section">
+            <a href="#photos" class="media-link">
+            <img src="{% static 'Images\Photo_thumbnail.jpg' %}" alt="Photos" class="media-image">
+            </a>
+            <form action="upload_image" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="image">Image:</label>
+                <input type="file" name="image" accept="image/*" required>
+                <input type="number" name="id-image" required>
+                
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+        <div class="media-section">
+            <a href="#videos" class="media-link">
+            <img src="{% static 'Images\Video_thumbnail.jpg' %}" alt="Videos" class="media-image">
+            </a>
+            <form action="upload_video" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="video">Video:</label>
+                <input type="file" name="video" accept="video/*" required>
+                <input type="number" name="id-video" required>
+                
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
