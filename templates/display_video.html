@@ -1,46 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Player</title>
+    <title>Image Gallery</title>
     <style>
         body {
+            background-color: black;
+            color: white;
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+        }
+
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             padding: 20px;
-            margin: 0;
         }
 
-        .video-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            grid-gap: 20px;
+        .image-box {
+            height: 300px;
+            margin: 10px;
+            border: 2px solid gray;
+            background-color: white;
+            text-align: center;
         }
 
-        video {
-            width: 100%;
-            max-height: 500px;
-            border-radius: 8px;
+        .image-box video {
+            max-height: 100%;
+            width: auto;
         }
-
     </style>
 </head>
 <body>
-    <form action="{% url 'add_vid_id' id=id %}">
-        <input type="number" name ="vid_id" required>
-        <button type="submit">Add Id</button>
-        </form>
-        <h2>Video Player</h2>
-    <div class="video-container">
-        {% for values in context %}
-        <div class="image-gallery">
-        <video controls>
-            <source src="{{values.url}}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        </div>
+    <h1 class="center-text">Video Gallery</h1>
+    
+    <div class="image-container">
+        <div class="image-box">
+            {% for values in context %}
+            <div class="image-item">
+                <video controls>
+                    <source src="{{values.url}}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
         {% endfor %}
+        </div>
     </div>
 </body>
 </html>
+
+

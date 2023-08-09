@@ -5,17 +5,17 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-    path("", views.home, name="home"),
+    path("", views.home, name="Home"),
     path("home", views.User_home, name="home"),
     path("upload", views.upload, name="upload"),
-    path("display_image/<str:id>", views.display_image, name="display image"),
-    path("display_video/<str:id>", views.display_video, name="display video"),
+    path("display_image", views.display_image, name="display image"),
+    path("display_video", views.display_video, name="display video"),
     path("Login", views.Login, name="Login"),
     path("Signup", views.Signup, name="Signup"),
     path("home/upload_image", views.upload_image, name="image"),
     path("home/upload_video", views.upload_video, name="video"),
-    path("add_img_id/<str:id>", views.add_img_id, name="add_img_id"),
-    path("add_vid_id/<str:id>", views.add_vid_id, name="add_vid_id"),
+    path("add_img_id", views.add_img_id, name="add_img_id"),
+    path("add_vid_id", views.add_vid_id, name="add_vid_id"),
 ]
 
 if settings.DEBUG:

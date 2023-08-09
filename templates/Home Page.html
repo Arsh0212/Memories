@@ -248,27 +248,31 @@
         <div class="logo">MEMORIES</div>
         <ul class="nav-links">
             <li><a href="home">Home</a></li>
-            {% if id != None %}
+            {% if login %}
             <li class="dropdown">
                 <a href="#">View Content</a>
                 <div class="dropdown-content">
-                    <a href="display_image/{{id}}">View Images</a>
-                    <a href="display_video/{{id}}">View Videos</a>
+                    <a href="display_image">View Images</a>
+                    <a href="display_video">View Videos</a>
                 </div>
+            </li>
+            <li>
+                <a href="upload">Upload Content</a>
             </li>
             <li class="dropdown">
-                <a href="#">Add Code</a>
+                <a href="#">{{name}}</a>
                 <div class="dropdown-content">
-                    <a href="add_vid_id">For Video</a>
-                    <a href="add_img_id">For Image</a>
+                    <a href="#">{{id}}</a>
+                    <a href="{% url 'Home' %}">LogOut</a>
                 </div>
             </li>
-            {% endif %}
+            {% else %}
             <li><a href="#">Contact</a></li>
         </ul>
         <ul class="auth-links">
             <li><a href="Login">Log In</a></li>
             <li><a href="Signup">Sign Up</a></li>
+            {% endif %}
         </ul>
     </div>
         <h2 class="heading">Hello {{name}}</h2>
