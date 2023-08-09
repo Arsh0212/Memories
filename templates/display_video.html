@@ -27,7 +27,7 @@
     </style>
 </head>
 <body>
-    <form action="add_vid_id">
+    <form action="{% url 'add_vid_id' id=id %}">
         <input type="number" name ="vid_id" required>
         <button type="submit">Add Id</button>
         </form>

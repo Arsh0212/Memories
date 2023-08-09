@@ -1,57 +1,102 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Person Information Form</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
     <style>
-        /* Your CSS styles here */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url("{% static 'Images/Back_Signup.jpg' %}");
+            background-size: cover; /* Adjusts the background image size to cover the entire viewport */
+            background-position: center; /* Centers the background image */
         }
 
-        label {
-            display: block;
-            margin-bottom: 10px;
+        .container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 40px;
+            margin-top: 180px;
+            border: 1px dashed #696c74;
+            background-color: rgba(22, 14, 14, 0.5);
+            text-align: center;
+            border-radius: 8px;
         }
 
-        input[type="password"],
-        input[type="email"] {
-            width: 50%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+        .form_input label {
+            text-align: left;
+            color: white;
+        }
+
+        h1 {
+            font-size: 32px;
             margin-bottom: 20px;
+            color: white;
         }
 
-        input[type="submit"] {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #007bff;
-            color: #fff;
+        form input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: transparent;
             border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            border-bottom: 2px solid #FFFFFF;
+            box-sizing: border-box;
+            outline: none;
+            color: white;
         }
 
-        input[type="submit"]:hover {
+        form button {
+            display: inline-block;
+            background-color: #007BFF;
+            color: #fff;
+            margin-top: 30px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input::placeholder {
+            color: white; /* Replace with your desired color */
+            font-size: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        form button:hover {
             background-color: #0056b3;
         }
+
     </style>
+        <script>
+            function togglePasswordVisibility() {
+                var passwordInput = document.getElementById('password');
+                var toggleButton = document.getElementById('toggleButton');
+    
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    toggleButton.textContent = 'Hide';
+                } else {
+                    passwordInput.type = 'password';
+                    toggleButton.textContent = 'Show';
+                }
+            }
+        </script>
 </head>
 <body>
-    <h1>Person Information Form</h1>
-    <form action="user" method="POST">
-        {%csrf_token%}
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <input type="submit" value="Submit">
-    </form>
+    <div class="container">
+        <h1>Login</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="button" id="toggleButton" onmouseover="togglePasswordVisibility()" onmouseleave="togglePasswordVisibility()">Show</button>
+            <button type="submit">Login</button>
+        </form>
+    </div>
 </body>
 </html>

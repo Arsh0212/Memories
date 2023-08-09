@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -50,15 +50,64 @@
     </style>
 </head>
 <body>
-    <form action="add_img_id">
+    <form action="{% url 'add_img_id' id=id %}">
     <input type="number" name ="img_id" required>
     <button type="submit">Add Id</button>
     </form>
     <div class="image-gallery">
+    {% if context != '' %}
         {% for values in context %}
             <div class="image-item">
                 <img src="{{values.url}}" alt="image">
             </div>
         {% endfor %}
+    {% endif %}
+</body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Gallery</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .image-box {
+            width: 300px;
+            margin: 10px;
+            border: 2px solid gray;
+            background-color: white;
+            text-align: center;
+        }
+
+        .image-box img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="center-text">Image Gallery</h1>
+    
+    <div class="image-container">
+        <div class="image-box">
+            {% for values in context %}
+            <div class="image-item">
+                <img src="{{values.url}}" alt="image">
+            </div>
+        {% endfor %}
+        </div>
+    </div>
 </body>
 </html>
+
