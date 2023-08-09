@@ -87,8 +87,6 @@ def display_image(request, id):
             context.append(img_instance.img)
         except:
             print("ID Does Not match")
-    if len(context) == 0:
-        return redirect(reverse("User_home", args=[id, name]))
     return render(request, "display.html", {"context": context, "id": id})
 
 
